@@ -9,7 +9,7 @@ interface HasId{
 export abstract class AbstractCrudService<T extends HasId> {
   protected constructor(
     protected readonly repository: Repository<T>,
-    private readonly dataSource:DataSource,
+    protected readonly dataSource:DataSource,
   ) {}
 
   // Helper to create a QueryRunner for transactions
