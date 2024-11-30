@@ -12,7 +12,7 @@ export class AppInitializationService implements OnModuleInit, OnApplicationShut
    ) {}
 
   async onApplicationShutdown(signal:string): Promise<void> {
-     this.logger.log(`Application shutdown due to signal ${signal}`);
+     this.logger.log(`Books4Muse Platform shutdown due to signal ${signal}`);
 
      try{
        await this.appDataSourceService.getAppDataSource.destroy()
@@ -23,7 +23,7 @@ export class AppInitializationService implements OnModuleInit, OnApplicationShut
   }
 
   async onModuleInit() {
-    this.logger.log('Initializing application...');
+    this.logger.log('Initializing Books4Muse Platform Application...');
 
     // Load configuration
     this.loadConfiguration()
@@ -39,17 +39,17 @@ export class AppInitializationService implements OnModuleInit, OnApplicationShut
     await this.testDatabaseConnection()
 
     this.logger.log('Data source initialized successfully.')
-    this.logger.log('Application initialization complete!');
+    this.logger.log('Books4Muse Platform Application initialization complete!');
   }
 
   private loadConfiguration(){
      const env= this.configService.get<string>("NODE_ENV");
-     this.logger.log(`Running in ${env} mode`)
+     this.logger.log(`Books4Muse Platform is running in ${env} mode`)
   }
   private async testDatabaseConnection() {
     try {
       await this.appDataSourceService.getAppDataSource.query('SELECT 1');
-      this.logger.log('Database connection successful');
+      this.logger.log('Database system is ready to accept connections');
     } catch (error) {
       this.logger.error('Database connection failed', error.stack);
       throw error; // Optionally throw an error to prevent the app from starting

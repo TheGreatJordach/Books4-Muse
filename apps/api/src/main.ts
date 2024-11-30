@@ -27,9 +27,9 @@ async function bootstrap() {
   await app.listen(port);
   Logger.log(
 
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}\n
+    `🚀 Books4Muse Platform Application is running on: http://localhost:${port}/${globalPrefix}\n
        ***************************************************************************
-    🚀  Swagger is running on: http://localhost:${port}/${globalPrefix}`
+    🚀  Api documentation is available on: http://localhost:${port}/${globalPrefix}`
   );
 }
 
