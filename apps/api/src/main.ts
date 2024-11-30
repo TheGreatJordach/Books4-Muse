@@ -3,7 +3,7 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger } from '@nestjs/common';
+import { Logger, VERSION_NEUTRAL, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
@@ -18,15 +18,19 @@ async function bootstrap() {
   const appConfig = app.get(ConfigService);
 
   // Register the custom exception filter globally
-  app.useGlobalFilters(new GlobalErrorHandlerFilter())
+  app.useGlobalFilters(new GlobalErrorHandlerFilter());
 
-  const appPort :number =  appConfig.get<number>("APP_PORT")
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: VERSION_NEUTRAL,
+  });
+
+  const appPort: number = appConfig.get<number>('APP_PORT');
 
   const port = appPort || 3000;
 
   await app.listen(port);
   Logger.log(
-
     `🚀 Books4Muse Platform Application is running on: http://localhost:${port}/${globalPrefix}\n
        ***************************************************************************
     🚀  Api documentation is available on: http://localhost:${port}/${globalPrefix}`

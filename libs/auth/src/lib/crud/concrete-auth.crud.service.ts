@@ -8,7 +8,7 @@ import { DataSource, Repository } from 'typeorm';
 export class AuthCrudService extends AbstractAuthCrudService {
   constructor(
     @InjectRepository(EUser)
-    readonly userRepository: Repository<EUser>,
+    private readonly userRepository: Repository<EUser>,
     override readonly dataSource: DataSource
   ) {
     super(userRepository, dataSource);

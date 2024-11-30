@@ -23,6 +23,11 @@ export class GlobalErrorHandlerFilter implements ExceptionFilter {
     const controllerName = executionContext.getClass?.()?.name || 'unknownController';
     const handlerName = executionContext.getHandler?.()?.name || 'unknownHandler';
 
+    // Extract the response body if it's a validation error or other known format
+    const responseBody =
+      exception instanceof HttpException
+        ? exception.getResponse()
+        : { message: exception.message || 'An unexpected error occurred.' };
 
     // Define the custom error structure
     const errorResponse = {
@@ -32,17 +37,15 @@ export class GlobalErrorHandlerFilter implements ExceptionFilter {
       success: false,
       date: new Date().toISOString(),
       message: this.getErrorMessage(exception), // Hide detailed errors in production
-      status: status,
+      status, ...(typeof responseBody === 'object' ? responseBody : { detail: responseBody }), // Include detailed error if available
     }
 
 
     // Log detailed error for debugging
     this.logger.error(errorResponse);
 
-    // Send the custom response
-    response.status(status).json(
-      `Error in ${errorResponse.where}: ${exception.stack || exception.message}`
-    );
+    // Send the custom response with extended information
+    response.status(status).json(errorResponse);
   }
 
   // Return a generic message for production; more detailed in development

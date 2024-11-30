@@ -50,6 +50,15 @@ export abstract class AbstractCrudService<T extends HasId> {
     })
   }
 
+
+  // Find one by ID with concurrency-safe locking
+  async findOneByEmail(email: string): Promise<T | null> {
+    return this.repository.findOne({
+      where: {email: email} as never,
+      lock: {mode:"pessimistic_read"} // For concurrency-safe reads
+    })
+  }
+
  async findAll(paginationOption:PaginationOptions): Promise<PaginationResult<T>> {
     const { page, limit } = paginationOption
 

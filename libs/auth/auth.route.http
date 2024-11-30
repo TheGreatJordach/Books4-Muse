@@ -1,0 +1,8 @@
+### POST api/v1/admin/signup
+POST http://localhost:3001/api/v1/admin/signup
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
