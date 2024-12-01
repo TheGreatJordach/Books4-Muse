@@ -4,9 +4,26 @@
 dist
 tmp
 /out-tsc
-
+.env
 # dependencies
 node_modules
+# Ignore Docker-related files
+.dockerignore
+docker-compose.override.yml
+docker-compose.yml
+
+# Ignore Docker containers' log files
+**/*.log
+
+# Ignore Docker volumes
+db-data/
+
+# Ignore node_modules if not already included
+node_modules/
+
+# Ignore build files if you're building your app in the container
+dist/
+
 
 # IDEs and editors
 /.idea
