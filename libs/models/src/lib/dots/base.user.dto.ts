@@ -1,5 +1,5 @@
 import { IUser } from '../business-types/users.interface';
-import { IsBoolean, IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 
 export class BaseUserDto implements IUser {
@@ -10,7 +10,8 @@ export class BaseUserDto implements IUser {
   @IsString()
   readonly lastName!: string;
   @IsBoolean()
-  readonly isActive!: boolean;
+  @IsOptional()
+  readonly isActive?: boolean;
   @IsNotEmpty()
   @IsEmail()
   readonly email!: string;

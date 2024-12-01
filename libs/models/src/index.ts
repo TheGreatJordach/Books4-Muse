@@ -4,4 +4,4 @@ export * from './lib/dots/create.user.dto';
 export * from './lib/dots/user.login.dto';
 export * from './lib/dots/user.payload.dto';
 export * from "./lib/entities/user.entity"
-
+export * from "./lib/dots/mini.user.dto"

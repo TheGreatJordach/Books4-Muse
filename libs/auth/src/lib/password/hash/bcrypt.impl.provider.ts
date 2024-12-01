@@ -30,7 +30,6 @@ export class BcryptImplProvider implements IHashProvider {
    * the required minimum, an HttpException is thrown.
    *
    * @param configService - The ConfigService instance used to access environment configurations.
-   * @param BcryptProvider - An instance of BcryptImplProvider for handling bcrypt operations.
    *
    * @throws HttpException - Throws an exception if the SALT_ROUNDS environment variable
    * is not defined or is less than the required minimum.

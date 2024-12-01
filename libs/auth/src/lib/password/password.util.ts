@@ -3,7 +3,14 @@ import { ValidPasswordDto } from './validate.password.dto';
 import { validate } from 'class-validator';
 
 export async function isValidPassword(password: string | Buffer): Promise<boolean> {
-  let passwordToValidate :string | Buffer
+  let passwordToValidate :string
+
+   if (password == null) {
+    throw new HttpException(
+      'Password must be provided and must be a string or Buffer',
+      HttpStatus.BAD_REQUEST,
+    );
+  }
 
 if(Buffer.isBuffer(password)){
   passwordToValidate = password.toString("utf-8");

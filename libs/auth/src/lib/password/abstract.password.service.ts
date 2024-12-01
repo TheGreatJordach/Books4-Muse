@@ -58,14 +58,13 @@ export abstract class AbstractPasswordService {
    * @param providedPassword
    */
   @HandleErrors()
-  async hashPassword(providedPassword: string | Buffer): Promise<[null, string]>  {
-    // Validate the input password
+  async hashPassword(providedPassword: string | Buffer)  {
+    //TODO Validate the input password
     await isValidPassword(providedPassword);
 
     // Hash the password using the bcrypt provider
-    const hashedPassword = await this.bcryptProvider.hash(providedPassword as string);
+    return  await this.bcryptProvider.hash(providedPassword);
 
-    return [null, hashedPassword]
   }
 
 
@@ -102,7 +101,7 @@ export abstract class AbstractPasswordService {
    */
   @HandleErrors(true)
   async comparePassword(
-    providedPassword: string | Buffer,
+    providedPassword: string ,
     hashedPassword: string,
   ): Promise<boolean> {
     // Validate the provided password

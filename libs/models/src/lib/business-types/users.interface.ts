@@ -8,7 +8,7 @@ export interface IUser {
   password?: string;
   confirmPassword?: string;
   email: string;
-  isActive: boolean;
+  isActive?: boolean;
   authScope?: AuthScope
 }
 

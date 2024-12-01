@@ -5,7 +5,7 @@
 
 import { Logger, VERSION_NEUTRAL, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-
+import cookieParser from 'cookie-parser';
 import { AppModule } from './app/app.module';
 import { ConfigService } from '@nestjs/config';
 import { GlobalErrorHandlerFilter } from './app/errors-handler/catch.all.error';
@@ -19,6 +19,8 @@ async function bootstrap() {
 
   // Register the custom exception filter globally
   app.useGlobalFilters(new GlobalErrorHandlerFilter());
+
+  app.use(cookieParser());
 
   app.enableVersioning({
     type: VersioningType.URI,

@@ -3,6 +3,24 @@ POST http://localhost:3001/api/v1/admin/signup
 Content-Type: application/json
 
 {
-  "id": 999,
-  "value": "content"
+  "lastName": "Batchi",
+  "firstName": "Lewis ",
+  "password": "Password@@2026",
+  "confirmPassword": "Password@@2026",
+  "email": "lewis5@gmail.com"
 }
+
+
+### POST api/v1/admin/signup
+POST http://localhost:3001/api/v1/admin/login
+Content-Type: application/json
+
+{
+  "password": "Password@@2026",
+  "email": "lewis2@gmail.com"
+}
+
+### POST api/v1/admin/signup
+POST http://localhost:3001/api/v1/admin/logout
+Content-Type: application/json
+Authorization: Bearer

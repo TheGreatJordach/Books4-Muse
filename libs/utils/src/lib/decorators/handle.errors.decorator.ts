@@ -48,7 +48,12 @@ export function HandleErrors(
     const originalMethod = descriptor.value;
     descriptor.value = async function(...args: any[]) {
       try {
-        const result = await originalMethod(this,...args);
+        if(!Array.isArray(args)) {
+          throw new Error("Arguments passed to the method are not in array format");
+        }
+
+        const result = await originalMethod.apply(this,args);
+
         if(preserveOriginalReturn) {
           // Return the original result directly
           return result;
